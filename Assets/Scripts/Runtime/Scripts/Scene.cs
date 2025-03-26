@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Runtime.Scripts
 {
     public class Scene
     {
-        internal GameObject player1Spawner;
-        internal GameObject player2Spawner;
+        internal Transform player1Spawner;
+        internal Transform p1SpawnEndOf;
+        internal Transform player2Spawner;
+        internal Transform p2SpawnEndOf;
     }
 }

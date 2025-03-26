@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e098562be384cd243b17a888414bac3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubePrefabWithCollider: {fileID: 822977968760672165, guid: dee9e46f7de48f64dad9b9ed178d4998, type: 3}
-  cubePrefabRender: {fileID: 822977968760672165, guid: ed06ae0e840377648af4db77e8044dd1, type: 3}
+  _cubePrefabWithCollider: {fileID: 822977968760672165, guid: dee9e46f7de48f64dad9b9ed178d4998, type: 3}
+  _cubePrefabRender: {fileID: 822977968760672165, guid: ed06ae0e840377648af4db77e8044dd1, type: 3}
   _sceneIndex: 1
   _player1BlockSpawn: {fileID: 822977968760672165, guid: dee9e46f7de48f64dad9b9ed178d4998, type: 3}
 --- !u!114 &5108382510241476752

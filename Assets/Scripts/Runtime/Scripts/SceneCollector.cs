@@ -5,8 +5,10 @@ namespace Assets.Scripts.Runtime.Scripts
     public class SceneCollector : MonoBehaviour
     {
         [SerializeField] private SceneType _sceneType;
-        [field: SerializeField] internal GameObject p1Spawn { get; private set; }
-        [field: SerializeField] internal GameObject p2Spawn { get; private set; }
+        [field: SerializeField] internal Transform p1Spawn { get; private set; }
+        [field: SerializeField] internal Transform p1SpawnEndOf { get; private set; }
+        [field: SerializeField] internal Transform p2Spawn { get; private set; }
+        [field: SerializeField] internal Transform p2SpawnEndOf { get; private set; }
 
         private void Awake()
         {
@@ -14,7 +16,9 @@ namespace Assets.Scripts.Runtime.Scripts
             {
                 case SceneType.Logical:
                     SceneData.Instance.logical.player1Spawner = p1Spawn;
+                    SceneData.Instance.logical.p1SpawnEndOf = p1SpawnEndOf;
                     SceneData.Instance.logical.player2Spawner = p2Spawn;
+                    SceneData.Instance.logical.p2SpawnEndOf = p2SpawnEndOf;
                     break;
                 case SceneType.Graphic:
                     SceneData.Instance.graphical.player1Spawner = p1Spawn;
