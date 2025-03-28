@@ -1045,6 +1045,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 950800629267575499, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: _horizontalSpeed
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 950800629267575499, guid: dff426b98904e864085daa0492d43371, type: 3}
       propertyPath: _cubePrefabRender
       value: 
       objectReference: {fileID: 822977968760672165, guid: ed06ae0e840377648af4db77e8044dd1, type: 3}
@@ -1052,6 +1056,30 @@ PrefabInstance:
       propertyPath: _cubePrefabWithCollider
       value: 
       objectReference: {fileID: 822977968760672165, guid: dee9e46f7de48f64dad9b9ed178d4998, type: 3}
+    - target: {fileID: 5108382510241476752, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: m_Actions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 4419d82f33d36e848b3ed5af4c8da37e, type: 3}
+    - target: {fileID: 5108382510241476752, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: m_DefaultControlScheme
+      value: KeyboardMouse
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108382510241476752, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: m_NotificationBehavior
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108382510241476752, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108382510241476752, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionId
+      value: 6d789307-39ab-4619-8168-ecbe45b53f72
+      objectReference: {fileID: 0}
+    - target: {fileID: 5108382510241476752, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: m_ActionEvents.Array.data[0].m_ActionName
+      value: 'Player/Move[/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+      objectReference: {fileID: 0}
     - target: {fileID: 5326916029704704757, guid: dff426b98904e864085daa0492d43371, type: 3}
       propertyPath: m_Name
       value: Game controler

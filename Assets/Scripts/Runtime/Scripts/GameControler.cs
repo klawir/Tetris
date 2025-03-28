@@ -1,43 +1,70 @@
 using DG.Tweening;
+using Scripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Runtime.Scripts
 {
     public class GameControler : MonoBehaviour
-    {
+    {  
         [SerializeField] private GameObject _cubePrefabWithCollider;
         [SerializeField] private GameObject _cubePrefabRender;
         [SerializeField] private int _sceneIndex;
         [SerializeField] private GameObject _player1BlockSpawn;
+        [SerializeField] private int _horizontalSpeed;
 
         private GameObject _spawedCubePrefabWithColliderForPlayer1;
         private GameObject _spawedCubePrefabRenderForPlayer1;
         private GameObject _spawedCubePrefabWithColliderForPlayer2;
         private GameObject _spawedCubePrefabRenderForPlayer2;
+        private PlayerControl _playerControl;
 
         private void Awake()
         {
             SceneData.InitializeTheSingleton();
             SceneData.Instance.Initialize();
             LoadSceneAsync();
+            _playerControl = new PlayerControl();
+            _playerControl.Enable();
         }
 
-        //TODO: new input system
-        /*public void OnLMB()
+        private void FixedUpdate()
         {
-            float move = Input.GetAxis("Horizontal") * Time.deltaTime * 5f;
-            _cube.transform.Translate(new Vector3(move, 0, 0));
-        }*/
+            Vector2 player1Move = _playerControl.Player1.Move.ReadValue<Vector2>();
+            Vector2 player2Move = _playerControl.Player2.Move.ReadValue<Vector2>();
 
-        private void Update()
-        {
-            float move = Input.GetAxis("Horizontal") * Time.deltaTime * 5f;
-
-            if (move > 0)
+            if (player1Move != Vector2.zero)
             {
-                _spawedCubePrefabWithColliderForPlayer1.transform.Translate(new Vector3(move, 0, 0));
-                _spawedCubePrefabRenderForPlayer1.transform.Translate(new Vector3(move, 0, 0));
+                _spawedCubePrefabWithColliderForPlayer1.transform.DOMove(new Vector3(player1Move.x * _horizontalSpeed, -4, 0), 0.1f).SetRelative();
+                _spawedCubePrefabRenderForPlayer1.transform.DOMove(new Vector3(player1Move.x * _horizontalSpeed, -4, 0), 0.1f).SetRelative();
+            }
+
+            else
+            {
+                _spawedCubePrefabWithColliderForPlayer1.transform.DOMove(
+                    new Vector3(0, -4, 0),
+                    0.1f).SetRelative();
+
+                _spawedCubePrefabRenderForPlayer1.transform.DOMove(
+                    new Vector3(0, -4, 0),
+                    0.1f).SetRelative();
+            }
+
+            if (player2Move != Vector2.zero)
+            {
+                _spawedCubePrefabWithColliderForPlayer2.transform.DOMove(new Vector3(player2Move.x * _horizontalSpeed, -4, 0), 0.1f).SetRelative();
+                _spawedCubePrefabRenderForPlayer2.transform.DOMove(new Vector3(player2Move.x * _horizontalSpeed, -4, 0), 0.1f).SetRelative();
+            }
+
+            else
+            {
+                _spawedCubePrefabWithColliderForPlayer2.transform.DOMove(
+                    new Vector3(0, -4, 0),
+                    0.1f).SetRelative();
+
+                _spawedCubePrefabRenderForPlayer2.transform.DOMove(
+                    new Vector3(0, -4, 0),
+                    0.1f).SetRelative();
             }
         }
 
@@ -60,15 +87,6 @@ namespace Assets.Scripts.Runtime.Scripts
 
             _spawedCubePrefabWithColliderForPlayer2 = Instantiate(_cubePrefabWithCollider.gameObject, SceneData.Instance.logical.player2Spawner.transform);
             _spawedCubePrefabRenderForPlayer2 = Instantiate(_cubePrefabRender.gameObject, SceneData.Instance.graphical.player2Spawner.transform);
-
-            Transform endOfSpawn = SceneData.Instance.logical.p1SpawnEndOf;
-            int speedOf = 5;
-            _spawedCubePrefabWithColliderForPlayer1.transform.DOMove(endOfSpawn.position, speedOf);
-            _spawedCubePrefabRenderForPlayer1.transform.DOMove(endOfSpawn.position, speedOf);
-
-            endOfSpawn = SceneData.Instance.logical.p2SpawnEndOf;
-            _spawedCubePrefabWithColliderForPlayer2.transform.DOMove(endOfSpawn.position, speedOf);
-            _spawedCubePrefabRenderForPlayer2.transform.DOMove(endOfSpawn.position, speedOf);
         }
     }
 }
