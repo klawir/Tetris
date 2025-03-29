@@ -5,9 +5,9 @@ namespace Assets.Scripts.Runtime.Scripts
     public class SceneCollector : MonoBehaviour
     {
         [SerializeField] private SceneType _sceneType;
-        [field: SerializeField] internal Transform p1Spawn { get; private set; }
+        [field: SerializeField] internal RectTransform p1Spawn { get; private set; }
         [field: SerializeField] internal Transform p1SpawnEndOf { get; private set; }
-        [field: SerializeField] internal Transform p2Spawn { get; private set; }
+        [field: SerializeField] internal RectTransform p2Spawn { get; private set; }
         [field: SerializeField] internal Transform p2SpawnEndOf { get; private set; }
 
         private void Awake()

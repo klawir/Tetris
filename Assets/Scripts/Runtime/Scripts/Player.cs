@@ -7,5 +7,12 @@ namespace Assets.Scripts.Runtime.Scripts
     {
         [SerializeField] private string _name;
         [SerializeField] private int _score;
+
+        public Block block;
+
+        internal void OnCollision()
+        {
+            block.DeleteRigidbody2D();
+        }
     }
 }
