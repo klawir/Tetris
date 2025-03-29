@@ -12,6 +12,8 @@ namespace Assets.Scripts.Runtime.Scripts
         [SerializeField] private RectTransform _rectTransformBoardPlayer2;
         [SerializeField] private GameObject _cubePrefabWithCollider;
         [SerializeField] private GameObject _cubePrefabRender;
+        [SerializeField] private GameObject _cube2PrefabWithCollider;
+        [SerializeField] private GameObject _cube2PrefabRender;
         [SerializeField] private GameObject _player1BlockSpawn;
         [SerializeField] private int _horizontalSpeed;
         [SerializeField] private int _blockFallingSpeed = 4;
@@ -28,17 +30,41 @@ namespace Assets.Scripts.Runtime.Scripts
         private GameObject _spawedCubePrefabWithColliderForPlayer2;
         private GameObject _spawedCubePrefabRenderForPlayer2;
         private PlayerControl _playerControl;
+        private Coroutine _coroutineUpdate;
 
         private void Awake()
         {
             SceneData.InitializeTheSingleton();
             SceneData.Instance.Initialize();
-            LoadSceneAsync();
+            SceneManager.LoadSceneAsync(_sceneIndex, LoadSceneMode.Additive);
             _playerControl = new PlayerControl();
             _playerControl.Enable();
-
             _player1TriggerCatcher.OnOnTriggerEnter2D += RecognizeForPlayer1;
             //_player2TriggerCatcher.OnOnTriggerEnter2D += RecognizeForPlayer2;
+        }
+
+        private void Start()
+        {
+            int randomIndex = Random.Range(1, 3);
+
+            switch (randomIndex)
+            {
+                case 1:
+                    _spawedCubePrefabWithColliderForPlayer1 = Instantiate(_cubePrefabWithCollider.gameObject, SceneData.Instance.logical.player1Spawner.transform);
+                    _spawedCubePrefabRenderForPlayer1 = Instantiate(_cubePrefabRender.gameObject, SceneData.Instance.graphical.player1Spawner.transform);
+                    break;
+
+                case 2:
+                    _spawedCubePrefabWithColliderForPlayer1 = Instantiate(_cube2PrefabWithCollider.gameObject, SceneData.Instance.logical.player1Spawner.transform);
+                    _spawedCubePrefabRenderForPlayer1 = Instantiate(_cube2PrefabRender.gameObject, SceneData.Instance.graphical.player1Spawner.transform);
+                    break;
+            }
+
+            _player1.block.LogicalPart = _spawedCubePrefabWithColliderForPlayer1;
+            _player1.block.GraphicsPart = _spawedCubePrefabRenderForPlayer1;
+
+            _spawedCubePrefabWithColliderForPlayer2 = Instantiate(_cubePrefabWithCollider.gameObject, SceneData.Instance.logical.player2Spawner.transform);
+            _spawedCubePrefabRenderForPlayer2 = Instantiate(_cubePrefabRender.gameObject, SceneData.Instance.graphical.player2Spawner.transform);
         }
 
         private void FixedUpdate()
@@ -93,15 +119,29 @@ namespace Assets.Scripts.Runtime.Scripts
         {
             _player1.OnCollision();
 
-            _spawedCubePrefabWithColliderForPlayer1 = Instantiate(_cubePrefabWithCollider.gameObject, SceneData.Instance.logical.player1Spawner);
-            _spawedCubePrefabRenderForPlayer1 = Instantiate(_cubePrefabRender.gameObject, SceneData.Instance.graphical.player1Spawner);
+            int randomIndex = Random.Range(1, 3);
 
-            bool numOverlaps = collider2D.GetComponent<RectTransform>().position.y>=
+            switch (randomIndex)
+            {
+                case 1:
+                    _spawedCubePrefabWithColliderForPlayer1 = Instantiate(_cubePrefabWithCollider.gameObject, SceneData.Instance.logical.player1Spawner.transform);
+                    _spawedCubePrefabRenderForPlayer1 = Instantiate(_cubePrefabRender.gameObject, SceneData.Instance.graphical.player1Spawner.transform);
+                    break;
+
+                case 2:
+                    _spawedCubePrefabWithColliderForPlayer1 = Instantiate(_cube2PrefabWithCollider.gameObject, SceneData.Instance.logical.player1Spawner.transform);
+                    _spawedCubePrefabRenderForPlayer1 = Instantiate(_cube2PrefabRender.gameObject, SceneData.Instance.graphical.player1Spawner.transform);
+                    break;
+            }
+
+            bool isGameOver = collider2D.GetComponent<RectTransform>().position.y>=
                 SceneData.Instance.logical.player1Spawner.position.y;
 
-            if (numOverlaps)
+            if (isGameOver)
             {
+                Debug.Log("isGameOver");
                 _player1TriggerCatcher.OnOnTriggerEnter2D -= RecognizeForPlayer1;
+                RunGameOver((int)SceneType.Score);
             }
 
             _player1.block.LogicalPart = _spawedCubePrefabWithColliderForPlayer1; 
@@ -113,28 +153,22 @@ namespace Assets.Scripts.Runtime.Scripts
 
         }
 
-        private void LoadSceneAsync()
+        private void RunGameOver(int sceneIndex, LoadSceneMode sceneMode = LoadSceneMode.Single)
         {
-            StartCoroutine(LoadSceneCoroutine());
+            SceneData.Instance.graphical.Player1RunGameOver();
+            StartCoroutine(LoadSceneCoroutine(sceneIndex, sceneMode));
+            enabled = false;
         }
 
-        private System.Collections.IEnumerator LoadSceneCoroutine()
+        private System.Collections.IEnumerator LoadSceneCoroutine(int sceneIndex, LoadSceneMode sceneMode)
         {
-            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(_sceneIndex, LoadSceneMode.Additive);
+            yield return new WaitForSeconds(3);
+            AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneIndex, sceneMode);
 
             while (!asyncOperation.isDone)
             {
                 yield return null;
             }
-
-            _spawedCubePrefabWithColliderForPlayer1 = Instantiate(_cubePrefabWithCollider.gameObject, SceneData.Instance.logical.player1Spawner.transform);
-            _spawedCubePrefabRenderForPlayer1 = Instantiate(_cubePrefabRender.gameObject, SceneData.Instance.graphical.player1Spawner.transform);
-
-            _player1.block.LogicalPart = _spawedCubePrefabWithColliderForPlayer1;
-            _player1.block.GraphicsPart = _spawedCubePrefabRenderForPlayer1;
-
-            _spawedCubePrefabWithColliderForPlayer2 = Instantiate(_cubePrefabWithCollider.gameObject, SceneData.Instance.logical.player2Spawner.transform);
-            _spawedCubePrefabRenderForPlayer2 = Instantiate(_cubePrefabRender.gameObject, SceneData.Instance.graphical.player2Spawner.transform);
         }
     }
 }
