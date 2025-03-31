@@ -1,5 +1,5 @@
 
-namespace Assets.Scripts.Runtime.Scripts
+namespace Assets.Scripts.Runtime
 {
     public class SceneData
     {
