@@ -6,7 +6,6 @@ public class TriggerCatcher : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(name+" "+collision.name);
         OnOnTriggerEnter2D.Invoke(collision);
     }
 }

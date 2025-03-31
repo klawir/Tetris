@@ -10,11 +10,10 @@ namespace Assets.Scripts.Runtime
         [SerializeField] private int _sceneIndex;
         [SerializeField] private RectTransform _rectTransformBoardPlayer1;
         [SerializeField] private RectTransform _rectTransformBoardPlayer2;
-        [SerializeField] private GameObject _cubePrefabWithCollider;
-        [SerializeField] private GameObject _cubePrefabRender;
-        [SerializeField] private GameObject _cube2PrefabWithCollider;
-        [SerializeField] private GameObject _cube2PrefabRender;
-        [SerializeField] private GameObject _player1BlockSpawn;
+        [SerializeField] private GameObject _prefabWithCollider;
+        [SerializeField] private GameObject _prefabRender;
+        [SerializeField] private GameObject _prefab2WithCollider;
+        [SerializeField] private GameObject _prefab2Render;
         [SerializeField] private int _horizontalSpeed;
         [SerializeField] private int _blockFallingSpeed = 4;
         [SerializeField] private float _leftBorderOffSet;
@@ -40,25 +39,25 @@ namespace Assets.Scripts.Runtime
         private void Start()
         {
             Board Player1Board = new Board(_rectTransformBoardPlayer1,
-                SceneData.Instance.logical.player1Spawner,
-                SceneData.Instance.graphical.player1Spawner, 
-                SceneData.Instance.graphical.p1NextBlock);
+                SceneData.Instance.LogicalScene.Player1Spawner,
+                SceneData.Instance.GraphicalScene.Player1Spawner, 
+                SceneData.Instance.GraphicalScene.Player1NextBlock);
 
             Board Player2Board = new Board(_rectTransformBoardPlayer2,
-                SceneData.Instance.logical.player2Spawner,
-                SceneData.Instance.graphical.player2Spawner,
-                SceneData.Instance.graphical.p2NextBlock);
+                SceneData.Instance.LogicalScene.Player2Spawner,
+                SceneData.Instance.GraphicalScene.Player2Spawner,
+                SceneData.Instance.GraphicalScene.Player2NextBlock);
 
             _player1 = new Player("player1", Player1Board);
             _player2 = new Player("player2", Player2Board);
 
-            var p1Score = SceneData.Instance.graphical.player1Score;
+            var p1Score = SceneData.Instance.GraphicalScene.Player1Score;
             _player1.OnAddScore += (value) =>
             {
                 p1Score.SetText(value.ToString());
             };
 
-            var p2Score = SceneData.Instance.graphical.player2Score;
+            var p2Score = SceneData.Instance.GraphicalScene.Player2Score;
             _player2.OnAddScore += (value) =>
             {
                 p2Score.SetText(value.ToString());
@@ -132,11 +131,11 @@ namespace Assets.Scripts.Runtime
             switch (randomIndex)
             {
                 case 1:
-                    player.CreateBlockAtTheQueue(_cubePrefabRender);
+                    player.CreateBlockAtTheQueue(_prefabRender);
                     break;
 
                 case 2:
-                    player.CreateBlockAtTheQueue(_cube2PrefabRender);
+                    player.CreateBlockAtTheQueue(_prefab2Render);
                     break;
             }
         }
@@ -146,21 +145,21 @@ namespace Assets.Scripts.Runtime
             switch (optionNumber)
             {
                 case 1:
-                    player.SpawnNewBlock(_cubePrefabWithCollider,
+                    player.SpawnNewBlock(_prefabWithCollider,
                         SceneType.Logical,
                         player.Board.SpawnRectTransformForLogicalPart);
 
-                    player.SpawnNewBlock(_cubePrefabRender,
+                    player.SpawnNewBlock(_prefabRender,
                         SceneType.Graphic, 
                         player.Board.SpawnRectTransformForGraphicsPart);
                     break;
 
                 case 2:
-                    player.SpawnNewBlock(_cube2PrefabWithCollider,
+                    player.SpawnNewBlock(_prefab2WithCollider,
                         SceneType.Logical,
                         player.Board.SpawnRectTransformForLogicalPart);
 
-                    player.SpawnNewBlock(_cube2PrefabRender,
+                    player.SpawnNewBlock(_prefab2Render,
                         SceneType.Graphic,
                         player.Board.SpawnRectTransformForGraphicsPart);
                     break;
@@ -174,14 +173,14 @@ namespace Assets.Scripts.Runtime
             SpawnNewBlock(_player1, _randomIndexForPlayer1);
 
             bool isGameOver = collider2D.GetComponent<RectTransform>().position.y >=
-                SceneData.Instance.logical.player1Spawner.position.y;
+                SceneData.Instance.LogicalScene.Player1Spawner.position.y;
 
             _player1.AddScore(_defaultPoint);
             if (isGameOver)
             {
                 _player1TriggerCatcher.OnOnTriggerEnter2D -= RecognizeForPlayer1;
                 RunGameOver((int)SceneType.Score);
-                SceneData.Instance.graphical.Player1RunGameOver();
+                SceneData.Instance.GraphicalScene.Player1RunGameOver();
             }
 
             _randomIndexForPlayer1 = Random.Range(1, 3);
@@ -193,14 +192,14 @@ namespace Assets.Scripts.Runtime
             _player2.OnCollision();
             SpawnNewBlock(_player2, _randomIndexForPlayer2);
             bool isGameOver = collider2D.GetComponent<RectTransform>().position.y >=
-                SceneData.Instance.logical.player2Spawner.position.y;
+                SceneData.Instance.LogicalScene.Player2Spawner.position.y;
 
             _player2.AddScore(_defaultPoint);
             if (isGameOver)
             {
                 _player2TriggerCatcher.OnOnTriggerEnter2D -= RecognizeForPlayer2;
                 RunGameOver((int)SceneType.Score);
-                SceneData.Instance.graphical.Player2RunGameOver();
+                SceneData.Instance.GraphicalScene.Player2RunGameOver();
             }
 
             _randomIndexForPlayer2 = Random.Range(1, 3);

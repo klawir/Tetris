@@ -4,23 +4,23 @@ namespace Assets.Scripts.Runtime
 {
     public struct Scene
     {
-        internal RectTransform player1Spawner;
-        internal TMPro.TMP_Text player1Score;
-        internal RectTransform player2Spawner;
-        internal TMPro.TMP_Text player2Score;
-        internal GameObject player1GameOver;
-        internal GameObject player2GameOver;
-        internal RectTransform p1NextBlock;
-        internal RectTransform p2NextBlock;
+        internal RectTransform Player1Spawner;
+        internal TMPro.TMP_Text Player1Score;
+        internal RectTransform Player2Spawner;
+        internal TMPro.TMP_Text Player2Score;
+        internal GameObject Player1GameOver;
+        internal GameObject Player2GameOver;
+        internal RectTransform Player1NextBlock;
+        internal RectTransform Player2NextBlock;
 
         internal void Player1RunGameOver()
         {
-            player1GameOver.SetActive(true);
+            Player1GameOver.SetActive(true);
         }
 
         internal void Player2RunGameOver()
         {
-            player2GameOver.SetActive(true);
+            Player2GameOver.SetActive(true);
         }
     }
 }

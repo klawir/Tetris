@@ -5,33 +5,32 @@ namespace Assets.Scripts.Runtime
     public class SceneCollector : MonoBehaviour
     {
         [SerializeField] private SceneType _sceneType;
-        [field: SerializeField] internal RectTransform p1Spawn { get; private set; }
-        [field: SerializeField] internal TMPro.TMP_Text p1ScoreText { get; private set; }
-        [field: SerializeField] internal RectTransform p2Spawn { get; private set; }
-        [field: SerializeField] internal RectTransform p2Score { get; private set; }
-        [field: SerializeField] internal TMPro.TMP_Text p2ScoreText { get; private set; }
-        [field: SerializeField] internal GameObject player1GameOver { get; private set; }
-        [field: SerializeField] internal GameObject player2GameOver { get; private set; }
-        [field: SerializeField] internal RectTransform p1NextBlock { get; private set; }
-        [field: SerializeField] internal RectTransform p2NextBlock { get; private set; }
+        [SerializeField] private RectTransform _player1Spawn;
+        [SerializeField] private TMPro.TMP_Text _player1ScoreText;
+        [SerializeField] private RectTransform _player2Spawn;
+        [SerializeField] private TMPro.TMP_Text _player2ScoreText;
+        [SerializeField] private GameObject _player1GameOver;
+        [SerializeField] private GameObject _player2GameOver;
+        [SerializeField] private RectTransform _player1NextBlock;
+        [SerializeField] private RectTransform _player2NextBlock;
 
         private void Awake()
         {
             switch (_sceneType)
             {
                 case SceneType.Logical:
-                    SceneData.Instance.logical.player1Spawner = p1Spawn;
-                    SceneData.Instance.logical.player2Spawner = p2Spawn;
+                    SceneData.Instance.LogicalScene.Player1Spawner = _player1Spawn;
+                    SceneData.Instance.LogicalScene.Player2Spawner = _player2Spawn;
                     break;
                 case SceneType.Graphic:
-                    SceneData.Instance.graphical.player1Spawner = p1Spawn;
-                    SceneData.Instance.graphical.player1Score = p1ScoreText;
-                    SceneData.Instance.graphical.player2Score = p2ScoreText;
-                    SceneData.Instance.graphical.player2Spawner = p2Spawn;
-                    SceneData.Instance.graphical.player1GameOver = player1GameOver;
-                    SceneData.Instance.graphical.player2GameOver = player2GameOver;
-                    SceneData.Instance.graphical.p1NextBlock = p1NextBlock;
-                    SceneData.Instance.graphical.p2NextBlock = p2NextBlock;
+                    SceneData.Instance.GraphicalScene.Player1Spawner = _player1Spawn;
+                    SceneData.Instance.GraphicalScene.Player1Score = _player1ScoreText;
+                    SceneData.Instance.GraphicalScene.Player2Score = _player2ScoreText;
+                    SceneData.Instance.GraphicalScene.Player2Spawner = _player2Spawn;
+                    SceneData.Instance.GraphicalScene.Player1GameOver = _player1GameOver;
+                    SceneData.Instance.GraphicalScene.Player2GameOver = _player2GameOver;
+                    SceneData.Instance.GraphicalScene.Player1NextBlock = _player1NextBlock;
+                    SceneData.Instance.GraphicalScene.Player2NextBlock = _player2NextBlock;
                     break;
             }
         }

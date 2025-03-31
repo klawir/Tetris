@@ -5,8 +5,8 @@ namespace Assets.Scripts.Runtime
     {
         public static SceneData Instance { get; private set; }
 
-        public Scene logical;
-        public Scene graphical;
+        public Scene LogicalScene;
+        public Scene GraphicalScene;
 
         public static void InitializeTheSingleton()
         {
@@ -15,8 +15,8 @@ namespace Assets.Scripts.Runtime
 
         public void Initialize()
         {
-            logical = new Scene();
-            graphical = new Scene();
+            LogicalScene = new Scene();
+            GraphicalScene = new Scene();
         }
     }
 }

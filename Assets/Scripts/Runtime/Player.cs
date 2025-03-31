@@ -9,20 +9,20 @@ namespace Assets.Scripts.Runtime
         private int _score;
         public System.Action<int> OnAddScore;
 
-        public Block _block;
+        public Block CurrentBlock { get; private set; }
         public Board Board {  get; private set; }
 
         public Player(string name, Board board)
         {
             _name = name;
             _score = 0;
-            _block = new Block();
+            CurrentBlock = new Block();
             Board = board;
         }
 
         internal void OnCollision()
         {
-            _block.DeleteRigidbody2D();
+            CurrentBlock.DeleteRigidbody2D();
         }
 
         internal void AddScore(int value)
@@ -36,22 +36,22 @@ namespace Assets.Scripts.Runtime
             switch (sceneType)
             {
                 case SceneType.Logical:
-                    _block.LogicalPart = UnityEngine.Object.Instantiate(prefab, spawnPlace);
+                    CurrentBlock.InstantiateLogicalPart(UnityEngine.Object.Instantiate(prefab, spawnPlace));
                     break;
                 case SceneType.Graphic:
-                    _block.GraphicsPart = UnityEngine.Object.Instantiate(prefab, spawnPlace);
+                    CurrentBlock.InstantiateGraphicsPart(UnityEngine.Object.Instantiate(prefab, spawnPlace));
                     break;
             }
         }
 
         internal void MoveHorizontalBlock(Vector2 playerMove, int horizontalSpeed, int blockFallingSpeed)
         {
-            _block.LogicalPart.transform.DOMove(
+            CurrentBlock.LogicalPart.transform.DOMove(
                 new Vector3(
                     playerMove.x * horizontalSpeed,
                     blockFallingSpeed, 0), 0.1f).SetRelative();
 
-            _block.GraphicsPart.transform.DOMove(
+            CurrentBlock.GraphicsPart.transform.DOMove(
                 new Vector3(
                     playerMove.x * horizontalSpeed,
                     blockFallingSpeed, 0), 0.1f).SetRelative();
@@ -59,11 +59,11 @@ namespace Assets.Scripts.Runtime
 
         internal void MoveVerticalBlock(int blockFallingSpeed)
         {
-            _block.LogicalPart.transform.DOMove(
+            CurrentBlock.LogicalPart.transform.DOMove(
                 new Vector3(0, blockFallingSpeed, 0),
                 0.1f).SetRelative();
 
-            _block.GraphicsPart.transform.DOMove(
+            CurrentBlock.GraphicsPart.transform.DOMove(
                 new Vector3(0, blockFallingSpeed, 0),
                 0.1f).SetRelative();
         }
@@ -80,12 +80,12 @@ namespace Assets.Scripts.Runtime
 
         internal bool CanMoveLeft(float offSet)
         {
-            return _block.LogicalPart.transform.position.x > offSet;
+            return CurrentBlock.LogicalPart.transform.position.x > offSet;
         }
 
         internal bool CanMoveRight(float offSet)
         {
-            return _block.LogicalPart.transform.position.x < offSet;
+            return CurrentBlock.LogicalPart.transform.position.x < offSet;
         }
 
         internal void CreateBlockAtTheQueue(GameObject prefabRender)

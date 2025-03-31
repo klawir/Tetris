@@ -297,6 +297,38 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player1Spawn
+      value: 
+      objectReference: {fileID: 8499314615467741561}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player2Spawn
+      value: 
+      objectReference: {fileID: 1348812514}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player1GameOver
+      value: 
+      objectReference: {fileID: 8499314615467741562}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player2GameOver
+      value: 
+      objectReference: {fileID: 1348812512}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player1NextBlock
+      value: 
+      objectReference: {fileID: 8499314615467741564}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player1ScoreText
+      value: 
+      objectReference: {fileID: 8499314615467741563}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player2NextBlock
+      value: 
+      objectReference: {fileID: 1348812516}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _player2ScoreText
+      value: 
+      objectReference: {fileID: 1348812515}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
       propertyPath: <Spawn>k__BackingField
       value: 
       objectReference: {fileID: 8499314615467741560}
@@ -337,6 +369,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: <player1Spawn>k__BackingField
+      value: 
+      objectReference: {fileID: 8499314615467741561}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: <player2Score>k__BackingField
+      value: 
+      objectReference: {fileID: 2094207759}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: <player2Spawn>k__BackingField
+      value: 
+      objectReference: {fileID: 1348812514}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
       propertyPath: <player1GameOver>k__BackingField
       value: 
       objectReference: {fileID: 8499314615467741562}
@@ -344,6 +388,22 @@ PrefabInstance:
       propertyPath: <player2GameOver>k__BackingField
       value: 
       objectReference: {fileID: 1348812512}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: <player1NextBlock>k__BackingField
+      value: 
+      objectReference: {fileID: 8499314615467741564}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: <player1ScoreText>k__BackingField
+      value: 
+      objectReference: {fileID: 8499314615467741563}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: <player2NextBlock>k__BackingField
+      value: 
+      objectReference: {fileID: 1348812516}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: <player2ScoreText>k__BackingField
+      value: 
+      objectReference: {fileID: 1348812515}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

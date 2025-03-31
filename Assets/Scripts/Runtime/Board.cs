@@ -4,12 +4,13 @@ namespace Assets.Scripts.Runtime
 {
     public class Board
     {
+        private bool _hasSpawnedNextBlock;
+
         internal RectTransform SpawnRectTransformForLogicalPart { get; private set; }
         internal RectTransform SpawnRectTransformForGraphicsPart { get; private set; }
         internal RectTransform RootRectTransform { get; private set; }
         internal RectTransform NextBlockRectTransform { get; private set; }
         internal GameObject SpawnedNextBlock { get; private set; }
-        internal bool HasSpawnedNextBlock { get; private set; }
 
         public float GetLeftBound { get; private set; }
         public float GetRightBound { get; private set; }
@@ -29,13 +30,13 @@ namespace Assets.Scripts.Runtime
 
         internal void CreateBlockAtTheQueue(GameObject prefabRender)
         {
-            if (HasSpawnedNextBlock)
+            if (_hasSpawnedNextBlock)
             {
                 UnityEngine.Object.Destroy(SpawnedNextBlock);
             }
 
             SpawnedNextBlock = UnityEngine.Object.Instantiate(prefabRender, NextBlockRectTransform);
-            HasSpawnedNextBlock = true;
+            _hasSpawnedNextBlock = true;
         }
     }
 }
