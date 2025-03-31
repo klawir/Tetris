@@ -38,9 +38,9 @@ namespace Assets.Scripts.Runtime
 
     public enum SceneType
     {
-        Logical = 0,
+        MainMenu = 0,
+        Logical,
         Graphic,
-        MainMenu,
         Score
     }
 }
