@@ -7,7 +7,7 @@ namespace Assets.Scripts.Runtime
     public class GameControler : MonoBehaviour
     {
         [SerializeField] private Score _score;
-        [SerializeField] private int _sceneIndex;
+        [SerializeField] private SceneType _additionalSceneForGraphic;
         [SerializeField] private RectTransform _rectTransformBoardPlayer1;
         [SerializeField] private RectTransform _rectTransformBoardPlayer2;
         [SerializeField] private GameObject _prefabWithCollider;
@@ -114,7 +114,7 @@ namespace Assets.Scripts.Runtime
         {
             SceneData.InitializeTheSingleton();
             SceneData.Instance.Initialize();
-            SceneManager.LoadSceneAsync(_sceneIndex, LoadSceneMode.Additive);
+            SceneManager.LoadSceneAsync((int)_additionalSceneForGraphic, LoadSceneMode.Additive);
             _playerControl = new PlayerControl();
             _playerControl.Enable();
 

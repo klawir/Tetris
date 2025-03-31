@@ -1230,6 +1230,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 950800629267575499, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: _sceneIndex
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 950800629267575499, guid: dff426b98904e864085daa0492d43371, type: 3}
       propertyPath: _prefabRender
       value: 
       objectReference: {fileID: 822977968760672165, guid: ed06ae0e840377648af4db77e8044dd1, type: 3}
@@ -1289,6 +1293,10 @@ PrefabInstance:
       propertyPath: _cube2PrefabWithCollider
       value: 
       objectReference: {fileID: 4592009176738461936, guid: c8245252b16491846a5ff9290c59749c, type: 3}
+    - target: {fileID: 950800629267575499, guid: dff426b98904e864085daa0492d43371, type: 3}
+      propertyPath: _additionalSceneForGraphic
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 950800629267575499, guid: dff426b98904e864085daa0492d43371, type: 3}
       propertyPath: _rectTransformBoardPlayer1
       value: 
@@ -1877,6 +1885,10 @@ PrefabInstance:
     - target: {fileID: 419419943179029762, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
       propertyPath: m_Name
       value: SceneHierarchy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
+      propertyPath: _sceneType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2574601608945259885, guid: 69cc2f09aad6b6c42b6fadbfc2423722, type: 3}
       propertyPath: _player1Spawn
